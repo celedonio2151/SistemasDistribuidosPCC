@@ -26,14 +26,14 @@ public class ServidorSumaTCP {
                client = server.accept(); //conexion con el cliente
                BufferedReader fromClient = new BufferedReader(new InputStreamReader(client.getInputStream())); // el lector
                System.out.println("Cliente se conecto");
-               System.out.println(fromClient.readLine()); // Recivimos el primer dato
+               System.out.println("Mensaje del cliente: "+fromClient.readLine()); // Recivimos el primer dato
                
                String cadena = fromClient.readLine();
                System.out.println("Numero desde el cliente "+cadena);
-               int sum = sumatoria(Integer.parseInt(cadena));
+//               int sum = sumatoria(Integer.parseInt(cadena));
                
                toClient = new PrintStream(client.getOutputStream()); 
-               toClient.println("La suma del numero es: "+sum);
+//               toClient.println("La suma del numero es: "+sum);
            } catch (IOException e) {
                System.out.println(e.getMessage());
            }   
@@ -42,7 +42,7 @@ public class ServidorSumaTCP {
     }
     
 //    Suma desde 1 hata el numero que el cliente envio y devuelve toda la suma de la serie
-    public static int sumatoria(int n){
+    public static int sumatoria(int n){    // 5+4+3+2+1 = 15
         int sumatoria = 0;
         for (int i = 0; i >= n; i++) {
             sumatoria += i;

@@ -16,20 +16,25 @@ public class ClienteSumaTCP {
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
         int port = 5002;
-        int numero;
+        String numero;
         try {
             Socket client = new Socket("localhost", port); // se conecta al server socket
             PrintStream toServer = new PrintStream(client.getOutputStream());
             BufferedReader fromServer = new BufferedReader(new InputStreamReader(client.getInputStream()));
             
-            toServer.println("SIS-258"); // imprimimos en el servidor el dato
+            System.out.println("Introduce un numero: ");
+            numero = teclado.next();
+            
+            toServer.println(numero); // imprimimos en el dato del servidor
             String result = fromServer.readLine();  // Leemos desde el servidor el dato
             System.out.println("cadena devuelta es: " + result);
             
 //            System.out.print("Introduce un numero: ");
-//            numero = teclado.nextInt();
-//            
+//            numero = teclado.next();
+            
 //            toServer.println(numero);
+//            String result2 = fromServer.readLine();  // Leemos desde el servidor el dato
+//            System.out.println("La suma de la serie "+numero+" es: " + result);
 
         } catch (IOException e) {
             System.out.println(e.getMessage());

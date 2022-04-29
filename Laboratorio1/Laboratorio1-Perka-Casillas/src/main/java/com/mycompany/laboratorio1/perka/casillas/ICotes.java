@@ -4,16 +4,15 @@
  */
 package com.mycompany.laboratorio1.perka.casillas;
 
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 /**
  *
  * @author cele2154
  */
-public interface IBanco extends Remote {
+public interface ICotes {
 
-    public Factura[] calcular(int idCliente) throws RemoteException;
+    public Factura pendientes(int idCliente) throws RemoteException;
 
     public String pagar(Factura[] fact) throws RemoteException;
 }

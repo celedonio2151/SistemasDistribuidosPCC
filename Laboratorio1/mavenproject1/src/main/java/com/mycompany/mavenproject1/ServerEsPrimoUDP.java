@@ -32,12 +32,12 @@ public class ServerEsPrimoUDP {
     public static void main(String[] args) {
         ServerEsPrimoUDP server = new ServerEsPrimoUDP();
         int PUERTO = 5000;
-        String res = "";
+        String res;
         
         try {
             System.out.println("Iniciamos el servidor UDP");
             DatagramSocket socketUDP = new DatagramSocket(PUERTO);
-            byte[] bufer = new byte[10000];
+            byte[] bufer = new byte[1000];
 
             while (true) {
                         // Construimos el DatagramPacket para recibir peticiones
@@ -52,20 +52,19 @@ public class ServerEsPrimoUDP {
 
                         String mensaje =  new String(peticion.getData());
                         int numero = Integer.parseInt(mensaje.trim());
-                        
+//                        
                         int es = server.esPrimo(numero);
+                        System.out.println("DIvisores: "+es);
                         if(es == 2){
-                            res = "es primo";
+                                    res ="es primo";
                         }else{
-                            res = "es primo";
+                                    res ="no es primo";
                         }
-                        System.out.println("Convertido a entero "+numero);
-//                        String mensajeDev = String.valueOf(pow);
-                        byte[] mensaje = res.getBytes();
-                        
-//                        =====================================================================================
+//                    =======================================================================================
+                        String p = res;
+                        byte[] enviarData = p.getBytes();
                         // Construimos el DatagramPacket para enviar la respuesta
-                        DatagramPacket respuesta = new DatagramPacket(mensaje), mensaje.length, peticion.getAddress(), peticion.getPort());
+                        DatagramPacket respuesta = new DatagramPacket(p.getBytes(), enviarData.length, peticion.getAddress(), peticion.getPort());
 
                         // Enviamos la respuesta, que es un eco
                         socketUDP.send(respuesta);

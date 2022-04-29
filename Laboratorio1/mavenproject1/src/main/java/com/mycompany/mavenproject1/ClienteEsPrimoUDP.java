@@ -9,6 +9,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.util.Scanner;
 
 /**
  *
@@ -20,8 +21,10 @@ public class ClienteEsPrimoUDP {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+            Scanner teclado = new Scanner(System.in);
             int PUERTO_SERVER = 5000;
-            String dato="4";
+            System.out.println("Ingrese un numero: ");
+            String dato = teclado.next();
             String ip="localhost";
             try {
                         DatagramSocket socketUDP = new DatagramSocket();

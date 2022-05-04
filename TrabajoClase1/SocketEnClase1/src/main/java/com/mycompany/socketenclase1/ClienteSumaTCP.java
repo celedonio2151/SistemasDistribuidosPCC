@@ -14,31 +14,21 @@ import java.util.Scanner;
 public class ClienteSumaTCP {
 
     public static void main(String[] args) {
-        Scanner teclado = new Scanner(System.in);
         int port = 5002;
-        String numero;
+        Scanner teclado = new Scanner(System.in);
         try {
-            Socket client = new Socket("localhost", port); // se conecta al server socket
-            PrintStream toServer = new PrintStream(client.getOutputStream());
-            BufferedReader fromServer = new BufferedReader(new InputStreamReader(client.getInputStream()));
-            
-            System.out.println("Introduce un numero: ");
-            numero = teclado.next();
-            
-            toServer.println(numero); // imprimimos en el dato del servidor
-            String result = fromServer.readLine();  // Leemos desde el servidor el dato
-            System.out.println("cadena devuelta es: " + result);
-            
-//            System.out.print("Introduce un numero: ");
-//            numero = teclado.next();
-            
-//            toServer.println(numero);
-//            String result2 = fromServer.readLine();  // Leemos desde el servidor el dato
-//            System.out.println("La suma de la serie "+numero+" es: " + result);
+                        Socket client = new Socket("localhost", port); 
+                        PrintStream toServer = new PrintStream(client.getOutputStream());
+                        BufferedReader fromServer = new BufferedReader(new InputStreamReader(client.getInputStream()));
+                        System.out.println("Ingrese un numero para verificar si es primo o no: ");
+                        int numero = teclado.nextInt();
+                        toServer.println(numero);
+//                        =====================================================================================
+                        String result = fromServer.readLine();  
+                        System.out.println("El numero  " + result);
 
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+                        System.out.println(e.getMessage());
         }
-
     }
 }

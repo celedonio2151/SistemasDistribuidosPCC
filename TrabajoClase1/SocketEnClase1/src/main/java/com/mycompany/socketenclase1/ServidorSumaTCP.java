@@ -12,41 +12,42 @@ import java.net.Socket;
  * @author Carlos
  */
 public class ServidorSumaTCP {
-
-    public static void main(String[] args) {
-        int port = 5002; 
-        
-        while (true){   // para que el servidor siga funcionando y no muera
-            try {
-               ServerSocket server = new ServerSocket(port);// levantar servidor socket
-               System.out.println("Se inicio el servidor con éxito");
-               
-               Socket client;   // Instanciamos un socket cliente
-               PrintStream toClient;       
-               client = server.accept(); //conexion con el cliente
-               BufferedReader fromClient = new BufferedReader(new InputStreamReader(client.getInputStream())); // el lector
-               System.out.println("Cliente se conecto");
-               System.out.println("Mensaje del cliente: "+fromClient.readLine()); // Recivimos el primer dato
-               
-               String cadena = fromClient.readLine();
-               System.out.println("Numero desde el cliente "+cadena);
-//               int sum = sumatoria(Integer.parseInt(cadena));
-               
-               toClient = new PrintStream(client.getOutputStream()); 
-//               toClient.println("La suma del numero es: "+sum);
-           } catch (IOException e) {
-               System.out.println(e.getMessage());
-           }   
-        }
-      
-    }
-    
-//    Suma desde 1 hata el numero que el cliente envio y devuelve toda la suma de la serie
-    public static int sumatoria(int n){    // 5+4+3+2+1 = 15
+    //    Suma desde 1 hata el numero que el cliente envio y devuelve toda la suma de la serie
+    public int sumatoria(int n){    // 5+4+3+2+1 = 15
         int sumatoria = 0;
-        for (int i = 0; i >= n; i++) {
-            sumatoria += i;
+        for (int i = 1; i <= n; i++) {
+            sumatoria +=i;
+            System.out.println(" " + sumatoria);
         }
         return sumatoria;
+    }
+
+    public static void main(String[] args) {
+         int port = 5002; 
+            ServidorSumaTCP serverSuma = new ServidorSumaTCP();
+            String mensajeDevolver = "";
+            
+            try {
+                        while(true){
+                                    ServerSocket server = new ServerSocket(port);
+                                    System.out.println("Se inicio el servidor con éxito");
+                                    Socket client;
+                                    PrintStream toClient;       
+                                    client = server.accept(); //conexion
+                                    BufferedReader fromClient = new BufferedReader(new InputStreamReader(client.getInputStream())); // el lector
+                                    System.out.println("Cliente se conecto");
+                                    String numero = fromClient.readLine();
+                                    int numeroSumar = Integer.valueOf(numero);  // convierte el del cliente en Entero
+                                    int es = serverSuma.sumatoria(numeroSumar);    // Devuelve numero de divisores
+                                    mensajeDevolver = es + " sumatoria";
+                                    System.out.println("Mensaje del cliente: " + numeroSumar +" sumatoria = " + es);
+//                                    ================================================================================
+                                    toClient = new PrintStream(client.getOutputStream()); 
+                                    toClient.println(mensajeDevolver);
+                                    System.out.println("Cliente se desconecto");
+                        }
+            } catch (IOException e) {
+                        System.out.println(e.getMessage());
+            }
     }
 }

@@ -25,23 +25,14 @@ public class ClienteUDP {
     String ip="localhost";
 
     try {
-        
+        DatagramSocket socketUDP = new DatagramSocket();
         System.out.println("Ingrese un numero: ");
         String numero = teclado.next();  
         String dato= String.valueOf(numero);
-//        String dato= "HOla servidro responode";
-//        int i = 234; 
-//        byte b = (byte) i; 
-//        System.out.println(b); // -22
-        
+        byte[] mensaje = dato.getBytes();
         InetAddress hostServidor = InetAddress.getByName(ip);
-        DatagramSocket socketUDP = new DatagramSocket();  // Inicializar
-//        buffer = dato.getBytes(java.nio.charset.StandardCharsets.UTF_8);
-        byte mensaje [] = numero.getBytes();
-        
-      
         // Construimos un datagrama para enviar el mensaje al servidor
-        DatagramPacket peticion = new DatagramPacket(mensaje, mensaje.length, hostServidor, PUERTO_SERVER);
+        DatagramPacket peticion = new DatagramPacket(mensaje, dato.length(), hostServidor, PUERTO_SERVER);
 
         // Enviamos el datagrama
         socketUDP.send(peticion);

@@ -27,10 +27,10 @@ public class ServerUDPPow3 {
 
     public static void main(String args[]) {
         final int PUERTO = 6789;
-        byte[] buffer = new byte[10000]; 
         try {
             System.out.println("Iniciamos el servidor UDP");
             DatagramSocket socketUDP = new DatagramSocket(PUERTO); // Iniciar
+            byte[] buffer = new byte[10000]; 
 
             while (true) {
                         // Construimos el DatagramPacket para recibir peticiones
@@ -41,27 +41,21 @@ public class ServerUDPPow3 {
                         System.out.println("Datagrama recibido del host: " + peticion.getAddress());
                         System.out.println(" Por el puerto remoto: " + peticion.getPort());
                         InetAddress direccion = peticion.getAddress();
-                        System.out.print("Recivi la informacion del cliente: ");
+                        System.out.print("Recivi la informacion del cliente: " + new String(peticion.getData()));
         //                El mensaje recivido
                         String mensaje = new String(peticion.getData());
-                        System.out.println(mensaje);
-                        
-                        byte[] bytes = mensaje.getBytes();
-    
-                        System.out.println("result1: " + new BigInteger(bytes).intValue());
-
-//                    int pow = Integer.parseInt(mensaje);
-//                    System.out.println("Numero convertido: "+pow);
-//                     int pow = 456;
-                        String p = mensaje;
-    //                mensaje = String.valueOf(powtencia3);
-                byte[] enviarData = p.getBytes();
+                        int numeroPow = Integer.parseInt(mensaje.trim());
+                        System.out.println(numeroPow);
+                        int pow3 = numeroPow*numeroPow*numeroPow;
+                        String pow = "La potencia 3 de: "+ numeroPow + " es: " + String.valueOf(pow3);
 //        ======================================================================
-                // Construimos el DatagramPacket para enviar la respuesta
-                DatagramPacket respuesta = new DatagramPacket(p.getBytes(), enviarData.length, direccion, peticion.getPort());
+                        // Construimos el DatagramPacket para enviar la respuesta
+                        byte[] enviarData = pow.getBytes();
+                        // Construimos el DatagramPacket para enviar la respuesta
+                        DatagramPacket respuesta = new DatagramPacket(pow.getBytes(), enviarData.length, direccion, peticion.getPort());
 
-                // Enviamos la respuesta, que es un eco
-                socketUDP.send(respuesta);
+                        // Enviamos la respuesta, que es un eco
+                        socketUDP.send(respuesta);
             }
 
         } catch (SocketException e) {

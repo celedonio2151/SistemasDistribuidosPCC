@@ -21,10 +21,8 @@ public class ServerSegipImplements extends UnicastRemoteObject implements ISegip
         public Respuesta verificar(int CI, String nombres, String apellidos) throws RemoteException {
                 if (CI == 1140506 && nombres.equals("Walter Jhamil") && apellidos.equals("Segovia Arellano")) {
                         return new Respuesta(true, "Los datos son correctos");
-                        
                 } else {
-                        return new Respuesta(true, "Los datos del CI no son corretos");
-
+                        return new Respuesta(false, "Los datos del CI no son corretos");
                 }
         }
 

@@ -11,8 +11,5 @@ import java.rmi.Remote;
  * @author cele2154
  */
 public interface IUniversidad extends Remote{
-        public Diploma emitirDiploma(int CI, String nombre, String primerApellido, String segundoApellido, String fechaDeNacimiento,String carrera) throws java.rmi.RemoteException;
-//        llamar desde aqui
-
-        
+        public Diploma emitirDiploma(int CI, String nombre, String primerApellido, String segundoApellido, String fechaDeNacimiento,String carrera) throws java.rmi.RemoteException;        
 }

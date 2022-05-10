@@ -28,7 +28,7 @@ public class ClienteLibros {
                 boolean salir = true;
                 int opcion;
                 String titulo,autor,editorial,mensaje;
-                int anio;
+                int idLibro,anio;
                 
 //                Libro aux = 
                 
@@ -65,7 +65,7 @@ public class ClienteLibros {
                                         break;
                                 case 2:
                                         System.out.println("Ingrese el id del libro a editar: ");
-                                        int idLibro = teclado.nextInt();
+                                        idLibro = teclado.nextInt();
                                         System.out.println("Ingrese el titulo del libro: ");
                                         titulo = teclado.next();
                                         System.out.println("Ingrese el autor del libro: ");
@@ -80,8 +80,10 @@ public class ClienteLibros {
                                         break;
                                 case 3:
                                         System.out.println("Ingrese idLibro para eliminar4: ");
-                                        String cadena = teclado.next();
+                                        idLibro = teclado.nextInt();
 //                                        System.out.println("Invertir Cadena: "+librosCli.invertirCadena(cadena));
+                                        mensaje = librosCli.eliminar(idLibro);
+                                        System.out.println("Mensaje: "+mensaje);
                                         break;
                                 case 4:
                                         ArrayList<Libro> auxiliar = librosCli.mostrar();

@@ -22,6 +22,7 @@ public class ServerUniversidadRMI extends UnicastRemoteObject implements IUniver
         @Override
         public Diploma emitirDiploma(int CI, String nombre, String primerApellido, String segundoApellido, String fechaDeNacimiento, String carrera) {
                 return null;
+//                llamar a metodos
         }
         
 }

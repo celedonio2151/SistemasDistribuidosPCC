@@ -1,5 +1,6 @@
 
 import java.rmi.RemoteException;
+import java.rmi.server.RemoteRef;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
@@ -13,42 +14,48 @@ import java.util.ArrayList;
  * @author cele2154
  */
 public class ServerCurso extends UnicastRemoteObject implements ICurso{
-    String Materia;
-    String Docente;
-    ArrayList<Estudiante>listaAlumnos;
-    
-    public ServerCurso(String materia, String docente) throws RemoteException {
-        super();
-        this.Materia = materia;
-       this. listaAlumnos = new ArrayList<Estudiante>();
-    }
+        private String materia;
+        private String docente;
+       private  ArrayList<Estudiante> ListaEstudiantes;
 
-    public String getMateria() {
-        return Materia;
-    }
+        public ServerCurso(String materia, String docente) throws RemoteException{
+                super();
+                this.materia = materia;
+                this.docente = docente;
+                this.ListaEstudiantes = new ArrayList<Estudiante>();
+        }
 
-    public void setMateria(String Materia) {
-        this.Materia = Materia;
-    }
+        public String getMateria() {
+                return materia;
+        }
 
-    public String getDocente() {
-        return Docente;
-    }
+        public void setMateria(String materia) {
+                this.materia = materia;
+        }
 
-    public void setDocente(String Docente) {
-        this.Docente = Docente;
-    }
-    
-    @Override
-    public void registrarEstudianes(Estudiante estudiante) {
-        this.listaAlumnos.add(estudiante);
-    }
+        public String getDocente() {
+                return docente;
+        }
 
-    @Override
-    public ArrayList<Estudiantes> ListarEstudiantes() {
-        return this.listaAlumnos;
-    }
-    
-    
-    
+        public void setDocente(String docente) {
+                this.docente = docente;
+        }
+
+        public ArrayList<Estudiante> getListaEstudiantes() {
+                return ListaEstudiantes;
+        }
+
+        public void setListaEstudiantes(ArrayList<Estudiante> ListaEstudiantes) {
+                this.ListaEstudiantes = ListaEstudiantes;
+        }
+        
+        @Override
+        public void registrarEstudianes(Estudiante estudiante) throws RemoteException {
+                ListaEstudiantes.add(estudiante);
+        }
+
+        @Override
+        public ArrayList<Estudiante> listarEstudiantes() throws RemoteException {
+                return ListaEstudiantes;
+        }
 }

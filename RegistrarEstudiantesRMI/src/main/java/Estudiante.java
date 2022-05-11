@@ -19,9 +19,9 @@ public class Estudiante implements Serializable {
     int edad;
     Carrera carrera;
 
-    public Estudiante(String nombre, String Apellidos, Sexo sexo, int edad, Carrera carrera) {
+    public Estudiante(String nombre, String apellidos, Sexo sexo, int edad, Carrera carrera) {
         this.nombre = nombre;
-        this.Apellidos = Apellidos;
+        this.Apellidos = apellidos;
         this.sexo = sexo;
         this.edad = edad;
         this.carrera = carrera;

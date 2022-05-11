@@ -22,11 +22,12 @@ public class RMIEstudiantes {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+            
          try {
-             ServerCurso server=new ServerCurso("Elsa","Docente");
+             ServerCurso server=new ServerCurso("SIS256","Carlos Montellano");
          
              LocateRegistry.createRegistry(1099); //levantar el servidor de registro;
-             Naming.bind("Operaciones",server);
+             Naming.bind("Curso",server); // Nombrando el servicio
              System.out.println("El servidor esta levandado");
              
              
@@ -37,6 +38,7 @@ public class RMIEstudiantes {
          } catch (MalformedURLException ex) {
              Logger.getLogger(ServerCurso.class.getName()).log(Level.SEVERE, null, ex);
          }
+         
     }
     
 }

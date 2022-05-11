@@ -8,5 +8,5 @@
  * @author cele2154
  */
 public enum Carrera {
-    Sistemas, Seguridad_TI, Cmputacion
+    Sistemas, Seguridad_TI, Computacion
 }

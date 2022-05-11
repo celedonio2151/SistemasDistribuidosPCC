@@ -14,6 +14,6 @@ import java.util.ArrayList;
  */
 public interface ICurso extends Remote{
     public void registrarEstudianes(Estudiante estudiante) throws RemoteException;
-    public ArrayList<Estudiantes>ListarEstudiantes() throws RemoteException;
+    public ArrayList<Estudiante> listarEstudiantes() throws RemoteException;
     
 }

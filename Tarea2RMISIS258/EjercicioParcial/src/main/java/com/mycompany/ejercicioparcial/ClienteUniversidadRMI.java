@@ -24,30 +24,23 @@ public class ClienteUniversidadRMI {
         public static void main(String[] args) {
                 IUniversidad universidad;
         Scanner sc = new Scanner(System.in);
-        
-        System.out.println("Introduzca el primer numero: ");
-        int primerNum = sc.nextInt();
-        System.out.println("Introduzca el segundo numero: ");
-        int segundoNum = sc.nextInt();
         boolean salir = true;
         int opcion;
         try {
             universidad = (IUniversidad)Naming.lookup("rmi://localhost/EmitirDiploma"); // instanciar un objeto remoto 
             while(salir){
-            System.out.println("1:  Sumar");
-            System.out.println("2:  Restar");
-            System.out.println("3:  Salir");
+            System.out.println("1:  Emitir Diploma");
+            System.out.println("2:  Salir");
             System.out.println("=============================================");
             System.out.println("Selecione un numero del menu: ");
             opcion = sc.nextInt();
                 switch(opcion){
                     case 1: 
-                       universidad.emitirDiploma(1,"Carla","Perrez","Calcina","20*04*2022","Sistemas");
+                             Diploma diploma = universidad.emitirDiploma(1140506,"Walter Jhamil","Segovia","Arellano","11-02-1996","Sistemas");
+                            System.out.println("La Diploma es: ");
+                            System.out.println(diploma.toString());
                         break;
                     case 2:
-//                        System.out.println("resta: "+universidad.restar(primerNum, segundoNum));
-                        break;
-                    case 3:
                         salir = false;
                         break;
                     default : 

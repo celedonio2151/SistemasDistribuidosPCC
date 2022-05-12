@@ -24,15 +24,15 @@ public class HostUniversidadPrincipal {
         public static void main(String[] args) {
                 try {
                         ServerUniversidadRMI server = new ServerUniversidadRMI();
+                        ServerSegipImplements segip = new ServerSegipImplements();
 
                         LocateRegistry.createRegistry(1099); //levantar el servidor de registro;
-                        Naming.bind("EmitirDiploma", server);
+                        Naming.bind("EmitirDiploma", server); // Servicio Universidad
+                        Naming.bind("VerificarSegip", segip); // Servicio Segip
                         System.out.println("El servidor esta levandado");
 
                 } catch (RemoteException | AlreadyBoundException | MalformedURLException ex) {
                         Logger.getLogger(HostUniversidadPrincipal.class.getName()).log(Level.SEVERE, null, ex); // nombre clase actual
-                }
-
+                }                
         }
-
 }

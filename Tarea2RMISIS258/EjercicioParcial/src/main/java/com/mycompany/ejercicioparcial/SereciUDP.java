@@ -1,0 +1,67 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package com.mycompany.ejercicioparcial;
+
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.SocketException;
+
+/**
+ *
+ * @author cele2154
+ */
+public class SereciUDP {
+
+        /**
+         * @param args the command line arguments
+         */
+        public static void main(String[] args) {
+                SereciUDP server = new SereciUDP();
+                int PUERTO = 5002;
+                String res;
+
+                try {
+                        System.out.println("Iniciamos el servidor UDP  SERECI");
+                        DatagramSocket socketUDP = new DatagramSocket(PUERTO);
+                        byte[] bufer = new byte[1000];
+
+                        while (true) {
+                                // Construimos el DatagramPacket para recibir peticiones
+                                DatagramPacket peticion = new DatagramPacket(bufer, bufer.length);
+
+                                // Leemos una petición del DatagramSocket
+                                socketUDP.receive(peticion);
+
+                                System.out.println("Datagrama recibido del host: " + peticion.getAddress());
+                                System.out.println(" Desde el puerto remoto: " + peticion.getPort());
+                                System.out.println(" Mensaje del cliente: " + new String(peticion.getData()));
+
+                                String mensaje = new String(peticion.getData());
+                                String dato = String.valueOf(mensaje.trim());
+                                System.out.println("Dato desde: " + dato);
+                                if (dato.equals("Walter Jhamil Segovia Arellano 11-02-1996")) {
+                                        res = "si : verificación correcta";
+                                } else {
+                                        res = "no : error fecha nacimiento no correcta";
+                                }
+//                    =======================================================================================
+                                String p = res;
+                                byte[] enviarData = p.getBytes();
+                                // Construimos el DatagramPacket para enviar la respuesta
+                                DatagramPacket respuesta = new DatagramPacket(p.getBytes(), enviarData.length, peticion.getAddress(), peticion.getPort());
+
+                                // Enviamos la respuesta, que es un eco
+                                socketUDP.send(respuesta);
+                        }
+
+                } catch (SocketException e) {
+                        System.out.println("Socket: " + e.getMessage());
+                } catch (IOException e) {
+                        System.out.println("IO: " + e.getMessage());
+                }
+        }
+
+}

@@ -1,0 +1,16 @@
+{
+  "ExtendedData": {
+    "inputs": [
+      "https://localhost:44370/SerWebBanco.asmx?WSDL"
+    ],
+    "collectionTypes": [
+      "System.Array",
+      "System.Collections.Generic.Dictionary`2"
+    ],
+    "namespaceMappings": [
+      "*, ServiceBanco"
+    ],
+    "targetFramework": "net6.0",
+    "typeReuseMode": "All"
+  }
+}
